@@ -70,7 +70,7 @@ export class UserFormComponent implements OnInit {
       this.dataService
         .create(this.user)
         .then(() => {
-          this.router.navigate(['../']);
+          this.router.navigate(['/users']);
         })
         .catch((err) => {
           this.error = err;
