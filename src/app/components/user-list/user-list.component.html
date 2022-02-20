@@ -11,6 +11,7 @@
         />
       </span>
     </div>
+    <button routerLink="./create">CREATE USER</button>
   </div>
 </div>
 
@@ -33,5 +34,9 @@
   </ng-container>
 
   <tr cdk-header-row *cdkHeaderRowDef="columnNames"></tr>
-  <tr cdk-row *cdkRowDef="let row; columns: columnNames"></tr>
+  <tr
+    cdk-row
+    *cdkRowDef="let row; columns: columnNames"
+    [routerLink]="row.id"
+  ></tr>
 </table>
