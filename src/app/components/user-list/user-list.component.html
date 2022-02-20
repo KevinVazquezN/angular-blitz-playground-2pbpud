@@ -1,0 +1,37 @@
+<div class="blueprint">
+  <div class="xl--third lg--third md--third sm--half xs--full">
+    <div class="field__input--search">
+      <span class="field__input--icon">
+        <input
+          type="text"
+          autocomplete="off"
+          name="text"
+          [formControl]="searchControl"
+          placeholder="Search"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+
+<table cdk-table [dataSource]="filterUsers" class="table">
+  <ng-container *ngFor="let column of columnNames" cdkColumnDef="{{ column }}">
+    <th
+      cdk-header-cell
+      *cdkHeaderCellDef
+      class="column__title"
+      (click)="sortBy(column)"
+      style="cursor: pointer"
+    >
+      {{ column | titlecase }}
+      <i
+        *ngIf="column == sortedColumn"
+        class="bi bi-sort-{{ sortedOrder == 'D' ? 'down' : 'up' }}"
+      ></i>
+    </th>
+    <td cdk-cell *cdkCellDef="let element">{{ element[column] }}</td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="columnNames"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: columnNames"></tr>
+</table>
